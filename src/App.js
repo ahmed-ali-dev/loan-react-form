@@ -1,10 +1,9 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Form from "./Components/Form";
 
 function App() {
   return (
-    <div className="App flex items-center justify-center">
+    <div classnName="App flex items-center justify-center">
       <Form />
     </div>
   );

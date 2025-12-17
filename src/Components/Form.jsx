@@ -1,6 +1,8 @@
 import React from "react";
 import Model from "./Model";
 import { useState } from "react";
+import InputComponent from "./InputComponent";
+import { LoanInputContext } from "./contexts/LoanFormInputContext";
 
 function Form() {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -8,7 +10,7 @@ function Form() {
     name: "",
     phone: "",
     age: "",
-    employee: true,
+    employee: false,
     salary: "",
   });
 
@@ -33,6 +35,16 @@ function Form() {
       setErrorMessage(null);
     }
   }
+  function handleNameChange(value) {
+    setLoanInputs({ ...loanInputs, name: value });
+  }
+  function handlePhoneChange(value) {
+    setLoanInputs({ ...loanInputs, phone: value });
+  }
+  function handleAgeChange(value) {
+    setLoanInputs({ ...loanInputs, age: value });
+  }
+
   return (
     <div
       onClick={() => {
@@ -48,45 +60,36 @@ function Form() {
       >
         <h1 className=" p-5 font-bold text-2xl">Requesting a Loan</h1>
         <hr className="mx-3 w-full" />
-        <label htmlFor="name" className="mt-2 ">
-          Name:
-        </label>
-        <input
-          type="text"
-          name="name"
-          value={loanInputs.name}
-          id=""
-          className="p-2 rounded-md text-black w-full h-7 border-none cursor-pointer"
-          onChange={(event) => {
-            setLoanInputs({ ...loanInputs, name: event.target.value });
+        <LoanInputContext
+          value={{
+            title: "Name :",
+            value: loanInputs.name,
+            handleChange: handleNameChange,
           }}
-        />
-        <label htmlFor="phone" className="mt-2">
-          Phone Number:
-        </label>
-        <input
-          type="text"
-          name="phone"
-          value={loanInputs.phone}
-          onChange={(event) => {
-            setLoanInputs({ ...loanInputs, phone: event.target.value });
+        >
+          <InputComponent />
+        </LoanInputContext>
+
+        <LoanInputContext
+          value={{
+            title: "Phone Number :",
+            value: loanInputs.phone,
+            handleChange: handlePhoneChange,
           }}
-          id=""
-          className="p-2 rounded-md text-black w-full h-7 border-none cursor-pointer"
-        />
-        <label htmlFor="age" className="mt-2">
-          Age:
-        </label>
-        <input
-          type="text"
-          name="age"
-          value={loanInputs.age}
-          onChange={(event) => {
-            setLoanInputs({ ...loanInputs, age: event.target.value });
+        >
+          <InputComponent />
+        </LoanInputContext>
+
+        <LoanInputContext
+          value={{
+            title: "Age :",
+            value: loanInputs.age,
+            handleChange: handleAgeChange,
           }}
-          id=""
-          className="p-2 rounded-md text-black w-full h-7 border-none cursor-pointer"
-        />
+        >
+          <InputComponent />
+        </LoanInputContext>
+
         <label htmlFor="bool" className="mt-3">
           Are you an employee?
         </label>
