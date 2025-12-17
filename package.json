@@ -20,7 +20,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage":"https://ahmed-ali-dev.github.io/loan-react-form",
+  "homepage":"https://ahmed-ali-dev.github.io/Loan-React-Form",
   "eslintConfig": {
     "extends": [
       "react-app",
